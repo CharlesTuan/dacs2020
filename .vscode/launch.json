@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "br.univille.dacs2020.testes.Main",
+            "projectName": "dacs2020"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "dacs2020"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "br.univille.Main",
+            "projectName": "dacs2020"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<dacs2020>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.univille.dacs2020.DemoApplication",
+            "projectName": "dacs2020",
+            "args": ""
+        }
+    ]
+}
