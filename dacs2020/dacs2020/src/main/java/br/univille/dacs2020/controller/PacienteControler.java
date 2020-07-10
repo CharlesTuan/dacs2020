@@ -39,7 +39,7 @@ public class PacienteControler {
     }
     
     @GetMapping(value = "/alterar/{id}")
-    public ModelAndView edit(@PathVariable("id") long id,Paciente paciente){
+    public ModelAndView edit(@PathVariable("id") Paciente paciente){
         return new ModelAndView("paciente/form", "paciente", paciente);
     }
 }
