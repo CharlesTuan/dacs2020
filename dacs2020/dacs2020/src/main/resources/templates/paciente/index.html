@@ -6,9 +6,17 @@
 <body>
     <div class="container">
         <nav th:replace="layout :: menu">(menu)</nav>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input name="consulta" id="inf_paciente" placeholder="Consultar" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </form>
         <h1>Paciente</h1>
-        <a href="form.html" th:href="@{/paciente/novo}" class="btn btn-outline-dark" role="button">Novo</a>
-        <table class="table">
+        <a href="form.html" th:href="@{/paciente/novo}" class="btn btn-dark" role="button">Novo</a>
+        <table class="table table-hover" id="pacientes">
             <thead>
                 <th>id</th>
                 <th>nome</th>
@@ -18,16 +26,39 @@
             </thead>
             <tbody>
                 <tr th:each="umpaciente : ${listapacientes}">
-                    <td th:text="${umpaciente.id}"></td>
-                    <td th:text="${umpaciente.nome}"></td>
-                    <td th:text="${umpaciente.sexo}"></td>
-                    <td th:text="${umpaciente.dataNascimento}"></td>
-                    <td><a th:href="@{'/paciente/alterar/' + ${umpaciente.id}}" class="btn btn-outline-primary">Alterar</a></td>
+                <td th:text="${umpaciente.id}"></td>
+                <td th:text="${umpaciente.nome}"></td>
+                <td th:text="${umpaciente.sexo}"></td>
+                <td th:text="${umpaciente.dataNascimento}"></td>
+                <td><a th:href="@{'/paciente/alterar/' + ${umpaciente.id}}" class="btn btn-primary">Alterar</a>
+                <button class='btn btn-danger js-delete' th:data-paciente-id="${umpaciente.id}">Excluir</button>
                 </tr>
             </tbody>
         </table>
     </div>
     <div th:include="layout :: footer" id="footer">(footer)</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $('input#inf_paciente').quicksearch('table#pacientes tbody tr');
+
+        $(document).ready(function(){
+            $("#pacientes").on("click", ".js-delete", function(){
+                var button = $(this);
+                bootbox.confirm("Confirma exclusão do paciente?", function(result){
+                    if(result){
+                        $.ajax({                                
+                            url: "/paciente/delete/" + button.attr("data-paciente-id"),
+                            method: "GET",                                
+                            success: function () {                                    
+                                window.location.href = "/paciente/" 
+                            }                            
+                        });
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>
