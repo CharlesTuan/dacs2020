@@ -20,6 +20,7 @@ public class Paciente {
     private long id;
     @Column(length = 1000, nullable = false)
     private String nome;
+    @Column(length = 1000, nullable = false)
     private String sexo;
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
