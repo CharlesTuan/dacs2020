@@ -17,12 +17,12 @@ import br.univille.dacs2020.service.PacienteService;
 @Controller
 @RequestMapping("/paciente")
 public class PacienteControler {
-
+    
     @Autowired
     private PacienteService service;
 
     @GetMapping
-    public ModelAndView index() {
+    public ModelAndView index(){
         List<Paciente> listaPacientes = service.getAll();
         return new ModelAndView("paciente/index", "listapacientes", listaPacientes);
     }
@@ -32,20 +32,14 @@ public class PacienteControler {
         return new ModelAndView("paciente/form");
     }
 
-    @PostMapping(params = "form")
-    public ModelAndView save(Paciente paciente) {
+    @PostMapping(params="form")
+    public ModelAndView save(Paciente paciente){
         service.save(paciente);
         return new ModelAndView("redirect:/paciente");
     }
-
+    
     @GetMapping(value = "/alterar/{id}")
-    public ModelAndView edit(@PathVariable("id") Paciente paciente) {
+    public ModelAndView edit(@PathVariable("id") Paciente paciente){
         return new ModelAndView("paciente/form", "paciente", paciente);
-    }
-
-    @GetMapping(value = "/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") Paciente paciente) {
-        service.delete(paciente);
-        return new ModelAndView("redirect:/paciente");
     }
 }

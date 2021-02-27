@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 public class Paciente {
     
@@ -20,10 +18,8 @@ public class Paciente {
     private long id;
     @Column(length = 1000, nullable = false)
     private String nome;
-    @Column(length = 1000, nullable = false)
     private String sexo;
     @Temporal(value = TemporalType.DATE)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dataNascimento;
 
     public long getId() {
